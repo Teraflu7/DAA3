@@ -13,7 +13,9 @@ public final class Graph {
     private final int vertexCount;
     private final boolean directed;
     private final List<List<WeightedEdge>> adjacency;
+    private final List<List<WeightedEdge>> readOnlyAdjacency;
     private final List<WeightedEdge> edges;
+    private final List<WeightedEdge> readOnlyEdges;
     private final int[] indegrees;
 
     public Graph(int vertexCount, boolean directed) {
@@ -23,10 +25,14 @@ public final class Graph {
         this.vertexCount = vertexCount;
         this.directed = directed;
         this.adjacency = new ArrayList<>(vertexCount);
+        this.readOnlyAdjacency = new ArrayList<>(vertexCount);
         this.edges = new ArrayList<>();
+        this.readOnlyEdges = Collections.unmodifiableList(edges);
         this.indegrees = new int[vertexCount];
         for (int vertex = 0; vertex < vertexCount; vertex++) {
-            adjacency.add(new ArrayList<>());
+            List<WeightedEdge> neighbors = new ArrayList<>();
+            adjacency.add(neighbors);
+            readOnlyAdjacency.add(Collections.unmodifiableList(neighbors));
         }
     }
 
@@ -59,12 +65,12 @@ public final class Graph {
 
     public List<WeightedEdge> neighbors(int vertex) {
         checkVertex(vertex);
-        return Collections.unmodifiableList(adjacency.get(vertex));
+        return readOnlyAdjacency.get(vertex);
     }
 
     /** Returns every logical edge exactly once. */
     public List<WeightedEdge> edges() {
-        return Collections.unmodifiableList(edges);
+        return readOnlyEdges;
     }
 
     /** Returns a defensive copy, so Kahn may mutate it safely. */

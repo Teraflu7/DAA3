@@ -3,6 +3,7 @@ package kz.edu.daa.graph;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,6 +54,8 @@ class GraphTest {
         Graph graph = new Graph(2, true);
         graph.addEdge(0, 1, 1);
 
+        assertSame(graph.neighbors(0), graph.neighbors(0));
+        assertSame(graph.edges(), graph.edges());
         assertThrows(UnsupportedOperationException.class,
                 () -> graph.neighbors(0).add(new WeightedEdge(0, 0, 0)));
         assertThrows(UnsupportedOperationException.class,
