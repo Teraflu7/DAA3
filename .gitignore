@@ -1,0 +1,11 @@
+.idea/
+*.iml
+target/
+out/
+.DS_Store
+*.log
+results-quick/
+
+# Keep the benchmark evidence required by the assignment.
+!results/results.csv
+!results/plots/*.png
