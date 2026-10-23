@@ -2,10 +2,6 @@
 
 Design and Analysis of Algorithms - Assignment 3.
 
-For a simple Russian explanation and a defense walkthrough, see
-[`GUIDE_RU.md`](GUIDE_RU.md). For oral practice, use the 12-question
-[`DEFENSE_QA_RU.md`](DEFENSE_QA_RU.md).
-
 | Field | Value |
 |---|---|
 | Student name | `Tamiris` |
